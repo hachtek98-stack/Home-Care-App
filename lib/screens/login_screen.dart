@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,6 +11,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isLogin = true;
+
+  void _navigateToDashboard() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => const DashboardScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
-                    onPressed: () {
-                      // Action for Login or Register
-                    },
+                    onPressed: _navigateToDashboard,
                     child: Text(_isLogin ? 'Se connecter' : 'Créer un compte'),
                   ),
                   const SizedBox(height: 24),
