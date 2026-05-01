@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'request_screen.dart';
+import 'vault_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
+
+  void _navigateToVault(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const VaultScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,7 @@ class DashboardScreen extends StatelessWidget {
                 context: context,
                 icon: Icons.security_outlined,
                 label: 'Mon Coffre-fort\nMédical',
-                onPressed: () {},
+                onPressed: () => _navigateToVault(context),
               ),
             ],
           ),
