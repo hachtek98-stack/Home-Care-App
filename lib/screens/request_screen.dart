@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'booking_payment_screen.dart';
 
 class RequestScreen extends StatelessWidget {
   const RequestScreen({super.key});
+
+  void _navigateToBooking(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => const BookingPaymentScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +44,7 @@ class RequestScreen extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               ElevatedButton.icon(
-                onPressed: () {
-                  // Action to take a photo
-                },
+                onPressed: () => _navigateToBooking(context),
                 icon: const Icon(Icons.camera_alt, size: 48),
                 label: const Text(
                   'Prendre en photo\nmon ordonnance',
@@ -58,9 +63,7 @@ class RequestScreen extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               OutlinedButton.icon(
-                onPressed: () {
-                  // Action to upload file
-                },
+                onPressed: () => _navigateToBooking(context),
                 icon: const Icon(Icons.upload_file, size: 32),
                 label: const Text(
                   'Télécharger un fichier',
