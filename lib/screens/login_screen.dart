@@ -11,6 +11,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isLogin = true;
 
+  // Regular expression for standard email format
+  static final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  // Regular expression for Djibouti phone number (8 digits, optional +253 prefix)
+  static final _phoneRegex = RegExp(r'^(\+253)?\d{8}$');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +56,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     style: const TextStyle(fontSize: 18),
                     keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer votre identifiant';
+                      }
+
+                      if (!_emailRegex.hasMatch(value) && !_phoneRegex.hasMatch(value)) {
+                        return 'Veuillez entrer un email ou numéro valide';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 24),
                   TextFormField(
@@ -60,11 +75,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     style: const TextStyle(fontSize: 18),
                     obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer votre mot de passe';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: () {
-                      // Action for Login or Register
+                      if (_formKey.currentState!.validate()) {
+                        // Action for Login or Register
+                      }
                     },
                     child: Text(_isLogin ? 'Se connecter' : 'Créer un compte'),
                   ),
