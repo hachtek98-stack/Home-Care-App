@@ -13,9 +13,11 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLogin = true;
 
   void _navigateToDashboard() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const DashboardScreen()),
-    );
+    if (_formKey.currentState!.validate()) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const DashboardScreen()),
+      );
+    }
   }
 
   @override
@@ -53,11 +55,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 48),
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Numéro de téléphone ou Email',
-                      prefixIcon: Icon(Icons.person_outline),
+                      labelText: 'Numéro de téléphone (+253)',
+                      prefixIcon: Icon(Icons.phone_android),
+                      prefixText: '+253 ',
                     ),
                     style: const TextStyle(fontSize: 18),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Veuillez entrer votre numéro de téléphone';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 24),
                   TextFormField(
@@ -67,6 +76,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     style: const TextStyle(fontSize: 18),
                     obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Le mot de passe est obligatoire';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
