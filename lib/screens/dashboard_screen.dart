@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'request_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -39,7 +40,11 @@ class DashboardScreen extends StatelessWidget {
                 context: context,
                 icon: Icons.add_circle_outline,
                 label: 'Demander un\nprélèvement',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const RequestScreen()),
+                  );
+                },
               ),
               const SizedBox(height: 24),
               _buildDashboardButton(
