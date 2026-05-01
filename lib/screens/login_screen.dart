@@ -13,6 +13,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -27,19 +29,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   Icon(
                     Icons.medical_services_outlined,
                     size: 80,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: theme.colorScheme.primary,
                   ),
                   const SizedBox(height: 24),
                   Text(
                     'Home Care',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayLarge,
+                    style: theme.textTheme.displayLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Service BioHome',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    style: theme.textTheme.bodyLarge?.copyWith(
                       color: Colors.grey[700],
                     ),
                   ),
