@@ -1,0 +1,9 @@
+{
+  "name": "home-care",
+  "version": "1.0.0",
+  "description": "Home Care Flutter app",
+  "scripts": {
+    "build": "flutter build web"
+  },
+  "private": true
+}
