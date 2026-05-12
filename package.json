@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Home Care Flutter app",
   "scripts": {
-    "build": "flutter build web"
+    "build": "echo 'Flutter build is handled separately'"
   },
   "private": true
 }
