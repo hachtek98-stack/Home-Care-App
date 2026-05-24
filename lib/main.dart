@@ -7,7 +7,6 @@ void main() {
 
 class HomeCareApp extends StatelessWidget {
   const HomeCareApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,11 +16,14 @@ class HomeCareApp extends StatelessWidget {
           seedColor: const Color(0xFF0D47A1), // Deep Blue
           primary: const Color(0xFF0D47A1),
           surface: Colors.white,
-          background: Colors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
-          displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF0D47A1)),
+          displayLarge: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF0D47A1),
+          ),
           bodyLarge: TextStyle(fontSize: 18, color: Colors.black87),
           bodyMedium: TextStyle(fontSize: 16, color: Colors.black87),
         ),
@@ -29,7 +31,10 @@ class HomeCareApp extends StatelessWidget {
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF0D47A1),
             foregroundColor: Colors.white,
-            textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textStyle: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
