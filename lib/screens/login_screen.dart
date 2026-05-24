@@ -9,10 +9,17 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  bool _isLogin = true;
+  final ValueNotifier<bool> _isLoginNotifier = ValueNotifier<bool>(true);
+
+  @override
+  void dispose() {
+    _isLoginNotifier.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -27,19 +34,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   Icon(
                     Icons.medical_services_outlined,
                     size: 80,
-                    color: Theme.of(context).colorScheme.primary,
+                    color: theme.colorScheme.primary,
                   ),
                   const SizedBox(height: 24),
                   Text(
                     'Home Care',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayLarge,
+                    style: theme.textTheme.displayLarge,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'Service BioHome',
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    style: theme.textTheme.bodyLarge?.copyWith(
                       color: Colors.grey[700],
                     ),
                   ),
@@ -62,29 +69,39 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: true,
                   ),
                   const SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Action for Login or Register
+                  ValueListenableBuilder<bool>(
+                    valueListenable: _isLoginNotifier,
+                    builder: (context, isLogin, child) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          // Action for Login or Register
+                        },
+                        child: Text(
+                          isLogin ? 'Se connecter' : 'Créer un compte',
+                        ),
+                      );
                     },
-                    child: Text(_isLogin ? 'Se connecter' : 'Créer un compte'),
                   ),
                   const SizedBox(height: 24),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _isLogin = !_isLogin;
-                      });
+                  ValueListenableBuilder<bool>(
+                    valueListenable: _isLoginNotifier,
+                    builder: (context, isLogin, child) {
+                      return TextButton(
+                        onPressed: () {
+                          _isLoginNotifier.value = !_isLoginNotifier.value;
+                        },
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.all(16),
+                        ),
+                        child: Text(
+                          isLogin
+                              ? 'Pas encore de compte ? Créer un compte'
+                              : 'Déjà un compte ? Se connecter',
+                          style: const TextStyle(fontSize: 18),
+                          textAlign: TextAlign.center,
+                        ),
+                      );
                     },
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(16),
-                    ),
-                    child: Text(
-                      _isLogin
-                          ? 'Pas encore de compte ? Créer un compte'
-                          : 'Déjà un compte ? Se connecter',
-                      style: const TextStyle(fontSize: 18),
-                      textAlign: TextAlign.center,
-                    ),
                   ),
                 ],
               ),
