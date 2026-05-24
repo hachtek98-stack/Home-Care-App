@@ -1,4 +1,4 @@
-package com.example.home_care
+package dj.biohome.home_care
 
 import io.flutter.embedding.android.FlutterActivity
 
