@@ -7,7 +7,6 @@ void main() {
 
 class HomeCareApp extends StatelessWidget {
   const HomeCareApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
