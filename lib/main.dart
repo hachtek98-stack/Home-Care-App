@@ -17,7 +17,6 @@ class HomeCareApp extends StatelessWidget {
           seedColor: const Color(0xFF0D47A1), // Deep Blue
           primary: const Color(0xFF0D47A1),
           surface: Colors.white,
-          background: Colors.white,
         ),
         scaffoldBackgroundColor: Colors.white,
         textTheme: const TextTheme(
